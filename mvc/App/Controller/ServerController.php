@@ -6,13 +6,13 @@ use App\Controller\Common\ControllerInterface as CInterface;
 
 class ServerController extends Controller implements CInterface{
     public function show(){
-        $servers =  $this->getData("SELECT * FROM Server");
-        $arrayToTemplate = ['title' => 'webstart bar', 'introduction' => "Webstart Bar" , 'servers' => $servers];
+        $servers =  $this->getData('SELECT * FROM Server WHERE id='.$_GET['id']);
+        $arrayToTemplate = ['title' => 'Webstart Bar', 'introduction' => "Serveur" , 'servers' => $servers];
 
-        $this->render($arrayToTemplate, 'drink');   
+        $this->render($arrayToTemplate, 'server');   
     }
 
-    public function getServer() {
+    public function getServerID() {
         $servers =  $this->getData("SELECT * FROM Server");
 
         return $servers;   
