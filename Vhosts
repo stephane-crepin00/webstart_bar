@@ -1,0 +1,70 @@
+fichier /etc/hosts: 
+
+    127.0.0.1       localhost
+    127.0.1.1       DESKTOP-51OFT5V.localdomain     DESKTOP-51OFT5V
+
+    127.0.0.1       localhost
+    ::1     localhost
+    127.0.0.1       webstart.local
+    127.0.0.1       bar.webstart.local
+    10.189.193.2    host.docker.internal
+    10.189.193.2    gateway.docker.internal
+    127.0.0.1       kubernetes.docker.internal
+
+    # The following lines are desirable for IPv6 capable hosts
+    ::1     ip6-localhost ip6-loopback
+    fe00::0 ip6-localnet
+    ff00::0 ip6-mcastprefix
+    ff02::1 ip6-allnodes
+    ff02::2 ip6-allrouters
+
+fichier /etc/apache2/sites-available/webstart.local.conf
+
+<VirtualHost *:80>
+        ServerName webstart.local
+
+        DirectoryIndex index.php
+        DocumentRoot /var/www/html/webstart/mvc/public
+
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride All
+        </Directory>
+
+        <Directory /var/www/html/webstart/mvc/public/ >
+                Options FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+                Require all granted
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error-webstart.local.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access-webstart.local.log combined
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName bar.webstart.local
+
+        DirectoryIndex index.php
+        DocumentRoot /var/www/html/Exams/Exam2/webstart_bar/mvc/Public
+
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride All
+        </Directory>
+
+         <Directory /var/www/html/Exams/Exam2/webstart_bar/mvc/Public>
+                Options FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+                Require all granted
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error-bar.webstart.local.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access-bar.webstart.local.log combined
+
+</VirtualHost>

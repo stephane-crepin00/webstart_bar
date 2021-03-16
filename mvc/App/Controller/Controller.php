@@ -2,20 +2,29 @@
 
 namespace App\Controller;
 
-use \PDO;
+use App\Controller\Common\ControllerInterface as CInterface;
 
-abstract class Controller {
-    protected function getData($sql): array {
-        $pdo = new PDO('mysql:host=localhost;dbname=webstart_bar', 'webstart_bar', 'webstart_bar_pwd');
+abstract class Controller  {
+    protected function getData(string $sql): array{
+        $pdo = new \PDO('mysql:dbname=webstart_bar;host=localhost', 'webstart_bar','webstart_bar_pwd');
+        $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES,false);
         $state = $pdo->prepare($sql);
+        
+        if (!$state) {
+            print_r($pdo->errorInfo());
+        }
+
         $state->execute();
-        return $state->fetchAll();
+        $results = $state->fetchAll();
+        
+        return $results;
     }
 
-    protected function render(array $arrayToTemplate, string $page) {
+    protected function render($variables, $template) {
         ob_start();
-        extract($arrayToTemplate);
+        extract($variables);
         ob_get_clean();
-        Require_once ROOT . "/App/Views/" . $page . ".php";
+        Require_once ROOT.'/App/View/'.$template.'.php';
     }
+
 }

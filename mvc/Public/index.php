@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 define('ROOT', dirname(__DIR__));
 define('WEBSITE_URL', 'http://bar.webstart.local/');
 
-Require_once ROOT.'/App/Autoloader.php';
+Require_once ROOT . '/App/Autoloader.php';
 
 App\Autoloader::register();
 
