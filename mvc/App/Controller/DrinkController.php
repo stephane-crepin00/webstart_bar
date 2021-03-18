@@ -17,11 +17,11 @@ class DrinkController extends Controller implements ControllerInterface {
         }
 
         if ($cocktail) {
-            $ingredients = $this->getData('SELECT * FROM ingredient WHERE Drink_id = ' . $_GET['id']);
+            $ingredients = $this->getData('SELECT * FROM Ingredient WHERE Drink_id = ' . $_GET['id']);
 
-            $arrayToTemplate = ['title' => $drink[0]['title'], 'drink' => $drink[0], 'ingredients' => $ingredients];
+            $arrayToTemplate = ['title' => $drink[0]['title'], 'drinks' => $drink, 'ingredients' => $ingredients];
 
-            $this->render($arrayToTemplate, 'Cocktail');
+            $this->render($arrayToTemplate, 'cocktail');
         } else {
             $arrayToTemplate = ['title' => $drink[0]['title'], 'introduction' => $drink[0]['description'], 'drinks' => $drink];
 
