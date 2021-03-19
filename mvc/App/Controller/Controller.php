@@ -6,7 +6,7 @@ use App\Controller\Common\ControllerInterface as CInterface;
 
 abstract class Controller  {
     protected function getData(string $sql): array{
-        $pdo = new \PDO('mysql:dbname=webstart_bar;host=localhost', 'webstart_bar','webstart_bar_pwd');
+        $pdo = new \PDO('mysql:dbname=webstart_bar; host=localhost', 'webstart_bar', 'webstart_bar_pwd');
         $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES,false);
         $state = $pdo->prepare($sql);
         
@@ -24,7 +24,7 @@ abstract class Controller  {
         ob_start();
         extract($variables);
         ob_get_clean();
-        Require_once ROOT.'/App/View/'.$template.'.php';
+        Require_once ROOT . '/App/View/' . $template . '.php';
     }
 
 }

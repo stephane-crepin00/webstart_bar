@@ -21,7 +21,11 @@ if(isset($_GET['action'])){
     $action = $_GET['action'];
 }
 
-$nameController = 'App\Controller\\'.ucfirst($page).'Controller';
+if ($page == 'admin') {
+    $nameController = 'App\Controller\Admin\\'.ucfirst($page).'Controller';
+} else {
+    $nameController = 'App\Controller\\'.ucfirst($page).'Controller';
+}
 
 if(!class_exists($nameController) || !method_exists($nameController, $action)){
     header('Location: '.WEBSITE_URL);

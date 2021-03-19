@@ -21,12 +21,12 @@
         <h2>Serveur</h2>
       </a>
     </header>
-    <h2><?php echo $introduction; ?></h2>
+    <h2><?php echo $introduction . ' - Voici nos Serveurs:'; ?></h2>
     <?php foreach($servers as $server) { 
-      if($server['active'] == 1) { ?>
-        <h3><?php echo $server['firstname'] . ' ' . $server['lastname'] . ' ' . $server['age']; ?></h3>
-        <p><?php echo $server['description']; ?></p>
-        <p>Ce serveur travaille principalement le <?php echo $server['schedule']; ?></p>
+      if ($server['active'] == 1) { ?>
+        <a href="/?page=server&action=getServerByID&id=<?php echo $server['id']; ?>">
+            <h3><?php echo $server['firstname'] . ' ' . $server['lastname']; ?></h3>
+        </a>
       <?php }
     } ?>
   </body>

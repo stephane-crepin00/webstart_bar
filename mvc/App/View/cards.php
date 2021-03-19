@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <h1><?php echo $title; ?></h1>
+    <h1><?php echo "Webstart Bar"; ?></h1>
     <header>
       <a href="/">
         <h2>Home</h2>
@@ -21,12 +21,14 @@
         <h2>Serveur</h2>
       </a>
     </header>
-    <h2><?php echo $introduction; ?></h2>
-    <?php foreach($servers as $server) { 
-      if($server['active'] == 1) { ?>
-        <h3><?php echo $server['firstname'] . ' ' . $server['lastname'] . ' ' . $server['age']; ?></h3>
-        <p><?php echo $server['description']; ?></p>
-        <p>Ce serveur travaille principalement le <?php echo $server['schedule']; ?></p>
+    <h1><?php echo $title .' - ' .  $introduction; ?></h1> 
+    <?php foreach ($cards as $card) { 
+      if ($card['active'] == 1) { ?> 
+        <a href="/?page=card&action=getCardById&id=<?php echo $card['id']; ?>">
+          <h2> 
+            <?php echo $card['title'] ?>
+          </h2>
+        </a>
       <?php }
     } ?>
   </body>

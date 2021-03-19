@@ -7,7 +7,7 @@ use App\Controller\Common\ControllerInterface;
 class DrinkController extends Controller implements ControllerInterface {
     public function show(){
         $cocktail = false;
-        $drink = $this->getData('SELECT * FROM Drink WHERE id='.$_GET['id']);
+        $drink = $this->getData('SELECT * FROM Drink WHERE id = '.$_GET['id']);
         $category = $this->getData('SELECT * FROM Drink_has_Category WHERE Drink_id = ' . $_GET['id']);
 
         foreach ($category as $value) {
@@ -18,7 +18,7 @@ class DrinkController extends Controller implements ControllerInterface {
 
         if ($cocktail) {
             $ingredients = $this->getData('SELECT * FROM Ingredient WHERE Drink_id = ' . $_GET['id']);
-
+            
             $arrayToTemplate = ['title' => $drink[0]['title'], 'drinks' => $drink, 'ingredients' => $ingredients];
 
             $this->render($arrayToTemplate, 'cocktail');
